@@ -4,7 +4,8 @@ django-allauth==0.63.2
 sqlparse==0.5.0
 tzdata==2024.1
 gunicorn
-django-otp==1.1.3
-django-two-factor-auth==1.14.0
-dj-database-url==0.5.0
-phonenumbers==8.12.45
+django-otp
+django-two-factor-auth
+dj-database-url
+phonenumbers
+whitenoise
