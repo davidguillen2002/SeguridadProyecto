@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 SECRET_KEY = 'django-insecure-oq*p76*44j-0!5h1im%t_aie0z$_$w)g)+*5wf=8^_p0jwki^p'
+ALLOWED_HOSTS = [os.getenv('RENDER_EXTERNAL_HOSTNAME'), 'your-app-domain.onrender.com']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -159,4 +162,13 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
